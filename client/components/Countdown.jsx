@@ -1,46 +1,72 @@
-import React, {Component} from 'react'
+import React from "react";
 
-export default class Countdown extends Component {
-    state = {
-        minutes: 100,
-        seconds: 0,
+export default class Countdown extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      secondsElapsed: 5, //time in seconds
+      count: 0
+    };
+  }
+
+  getSeconds() {
+    return ("0" + (this.state.secondsElapsed % 60)).slice(-2);
+  }
+
+  getCount(){
+     return ('0' + (this.state.count)).slice(-2);
+  }
+
+  updateCount(){
+    this.setState({ count: this.state.count + 1 })
+  }
+
+  soundOne = new Audio('/sounds/tfs-drink.mp3')
+
+  startTime() {
+    var _this = this;
+    this.countdown = setInterval(function() {
+      if (_this.state.secondsElapsed == 0){
+        _this.resetTime()
+        _this.updateCount()
+        _this.props.reloadQuote()
+        _this.soundOne.play()
+        _this.endGame()
+      }
+      _this.setState({ secondsElapsed: _this.state.secondsElapsed - 1 });
+    }, 1000);
+    
+  }
+
+  resetTime() {
+    this.reset = this.setState({
+      secondsElapsed: (this.state.secondsElapsed = 60)
+    });
+  }
+
+  pauseTime() {
+    clearInterval(this.countdown);
+  }
+
+  endGame = () => {
+    if (this.state.count == 100){
+      this.pauseTime()
     }
+  }
 
-    componentDidMount() {
-        this.myInterval = setInterval(() => {
-            const { seconds, minutes } = this.state
-
-            if (seconds > 0) {
-            this.setState(({ seconds }) => ({
-                seconds: seconds - 1
-            }))
-        }
-            if (seconds === 0) {
-                if (minutes === 0) {
-                    clearInterval(this.myInterval)
-                } else {
-                    this.setState(({ minutes }) => ({
-                        minutes: minutes - 1,
-                        seconds: 59
-                    }))
-                }
-            }
-        }, 1000)
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.myInterval)
-    }
-
-render() {
-    const {minutes, seconds} = this.state
-    return ( 
-    <div >
-        { minutes === 0 && seconds === 0
-        ? <h1>Winner Winner Chicken Dinner!</h1>
-        : <h1>Time Remaining: { minutes }:{ seconds < 10 ? `0${ seconds }`: seconds }</h1>
-        }
-    </div>
-    )}
+  render() {
+    return (
+      <div className="App">
+        <div className="timer-container">
+          <div className="bloc-timer"> {this.getSeconds()} </div>          
+          <div className="bloc-count">{this.getCount()}</div>
+        </div>
+        <div className="timer-container">
+          <button onClick={() => this.startTime()}>Start</button>
+          <button onClick={() => this.pauseTime()}>Pause</button>
+        </div>
+      </div>
+    );
+  }
 }
-

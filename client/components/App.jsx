@@ -1,16 +1,18 @@
 import React from 'react'
-import Countdown from './Countdown'
+import Centurion from './Centurion'
 
-const App = () => {
+class App extends React.Component {
+  state = {
+    quote:''
+  }
 
-  
+  render(){
   return (
     <div>
-      <h1>React development has begun!</h1>
-      <Countdown />
+      <Centurion />
 
     </div>
-  )
+  )}
 }
 
 export default App

@@ -1,0 +1,61 @@
+html {
+    background: linear-gradient(to top right, rgba(0, 255, 21, 0.274), transparent), url(https://cdn.aarp.net/content/dam/aarp/entertainment/television/2017/01/1140-aarp-goes-hollywood-betty-white.imgcache.rev6fbd7523388a3befedc6ecea3350bcf5.jpg) center/cover no-repeat border-box, #080E33;
+    min-height: 800px;
+}
+
+body{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    align-items: center;
+}
+
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+    color: blue;
+    margin-left: 100px;
+}
+
+.timer-container{
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    padding-left: 200px;
+}
+
+.bloc-timer{
+    margin-right: 25px;
+    margin-bottom: 30px;
+    padding: 30px;
+    font-size: 60px;
+    border: solid;
+    border-color: rgb(182, 67, 197);
+    border-radius: 200px;
+}
+
+.bloc-count{
+    margin-right: 30px;
+    margin-bottom: 30px;
+    position: relative;
+    padding: 30px;
+    font-size: 60px;
+    border: solid;
+    border-color: rgb(182, 67, 197);
+    border-radius: 200px;
+}
+
+button{
+    border: white;
+    background-color: black;
+    border-radius: 10%;
+    color: white;
+    padding: 10px 20px;
+    margin-left: 40px;
+}
+
+h2{
+    font-family: 'Courier New', Courier, monospace;
+    color: rgba(255, 4, 142, 0.849);
+    margin-top: 50px;
+    font-size: 15px;
+}
